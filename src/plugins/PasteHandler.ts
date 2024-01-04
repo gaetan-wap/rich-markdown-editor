@@ -1,5 +1,4 @@
 import { Plugin } from "prosemirror-state";
-import { isInTable } from "prosemirror-tables";
 import { toggleMark } from "prosemirror-commands";
 import Extension from "../lib/Extension";
 import isUrl from "../lib/isUrl";
@@ -59,7 +58,7 @@ export default class PasteHandler extends Extension {
               // Is this link embeddable? Create an embed!
               const { embeds } = this.editor.props;
 
-              if (embeds && !isInTable(state)) {
+              if (embeds) {
                 for (const embed of embeds) {
                   const matches = embed.matcher(text);
                   if (matches) {

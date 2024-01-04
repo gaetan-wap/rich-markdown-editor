@@ -2,7 +2,6 @@ import { InputRule } from "prosemirror-inputrules";
 import ReactDOM from "react-dom";
 import * as React from "react";
 import { Plugin } from "prosemirror-state";
-import { isInTable } from "prosemirror-tables";
 import { findParentNode } from "prosemirror-utils";
 import { PlusIcon } from "outline-icons";
 import { Decoration, DecorationSet } from "prosemirror-view";
@@ -160,8 +159,7 @@ export default class BlockMenuTrigger extends Extension {
       new InputRule(OPEN_REGEX, (state, match) => {
         if (
           match &&
-          state.selection.$from.parent.type.name === "paragraph" &&
-          !isInTable(state)
+          state.selection.$from.parent.type.name === "paragraph"
         ) {
           this.options.onOpen(match[1]);
         }

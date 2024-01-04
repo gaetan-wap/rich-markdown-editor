@@ -12,7 +12,6 @@ import {
   InputIcon,
   HighlightIcon,
 } from "outline-icons";
-import { isInTable } from "prosemirror-tables";
 import { EditorState } from "prosemirror-state";
 import isInList from "../queries/isInList";
 import isMarkActive from "../queries/isMarkActive";
@@ -26,7 +25,7 @@ export default function formattingMenuItems(
   dictionary: typeof baseDictionary
 ): MenuItem[] {
   const { schema } = state;
-  const isTable = isInTable(state);
+  const isTable = false;
   const isList = isInList(state);
   const allowBlocks = !isTable && !isList;
 
