@@ -48,7 +48,7 @@ declare class CommandMenu<T = MenuItem> extends React.Component<Props<T>, State>
     handleLinkInputPaste: (event: React.ClipboardEvent<HTMLInputElement>) => void;
     triggerImagePick: () => void;
     triggerLinkInput: (item: any) => void;
-    handleImagePicked: (event: any) => void;
+    handleImagePicked: () => void;
     clearSearch: () => void;
     insertBlock(item: any): void;
     get caretPosition(): {

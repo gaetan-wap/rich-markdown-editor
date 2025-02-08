@@ -9,7 +9,7 @@ import Input from "./Input";
 import VisuallyHidden from "./VisuallyHidden";
 import getDataTransferFiles from "../lib/getDataTransferFiles";
 import filterExcessSeparators from "../lib/filterExcessSeparators";
-import insertFiles from "../commands/insertFiles";
+// import insertFiles from "../commands/insertFiles";
 import baseDictionary from "../dictionary";
 
 const SSR = typeof window === "undefined";
@@ -258,18 +258,18 @@ class CommandMenu<T = MenuItem> extends React.Component<Props<T>, State> {
     this.setState({ insertItem: item });
   };
 
-  handleImagePicked = event => {
-    const files = getDataTransferFiles(event);
+  handleImagePicked = () => {
+    // const files = getDataTransferFiles(event);
 
     const {
-      view,
+      // view,
       uploadImage,
-      onImageUploadStart,
-      onImageUploadStop,
-      onShowToast,
+      // onImageUploadStart,
+      // onImageUploadStop,
+      // onShowToast,
     } = this.props;
-    const { state } = view;
-    const parent = findParentNode(node => !!node)(state.selection);
+    // const { state } = view;
+    // const parent = findParentNode(node => !!node)(state.selection);
 
     this.clearSearch();
 
@@ -277,15 +277,15 @@ class CommandMenu<T = MenuItem> extends React.Component<Props<T>, State> {
       throw new Error("uploadImage prop is required to replace images");
     }
 
-    if (parent) {
-      insertFiles(view, event, parent.pos, files, {
-        uploadImage,
-        onImageUploadStart,
-        onImageUploadStop,
-        onShowToast,
-        dictionary: this.props.dictionary,
-      });
-    }
+    // if (parent) {
+    //   insertFiles(view, event, parent.pos, files, {
+    //     uploadImage,
+    //     onImageUploadStart,
+    //     onImageUploadStop,
+    //     onShowToast,
+    //     dictionary: this.props.dictionary,
+    //   });
+    // }
 
     if (this.inputRef.current) {
       this.inputRef.current.value = "";

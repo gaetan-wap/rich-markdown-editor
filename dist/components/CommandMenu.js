@@ -42,9 +42,7 @@ const styled_components_1 = __importDefault(require("styled-components"));
 const types_1 = require("../types");
 const Input_1 = __importDefault(require("./Input"));
 const VisuallyHidden_1 = __importDefault(require("./VisuallyHidden"));
-const getDataTransferFiles_1 = __importDefault(require("../lib/getDataTransferFiles"));
 const filterExcessSeparators_1 = __importDefault(require("../lib/filterExcessSeparators"));
-const insertFiles_1 = __importDefault(require("../commands/insertFiles"));
 const SSR = typeof window === "undefined";
 const defaultPosition = {
     left: -1000,
@@ -189,23 +187,11 @@ class CommandMenu extends React.Component {
         this.triggerLinkInput = item => {
             this.setState({ insertItem: item });
         };
-        this.handleImagePicked = event => {
-            const files = getDataTransferFiles_1.default(event);
-            const { view, uploadImage, onImageUploadStart, onImageUploadStop, onShowToast, } = this.props;
-            const { state } = view;
-            const parent = prosemirror_utils_1.findParentNode(node => !!node)(state.selection);
+        this.handleImagePicked = () => {
+            const { uploadImage, } = this.props;
             this.clearSearch();
             if (!uploadImage) {
                 throw new Error("uploadImage prop is required to replace images");
-            }
-            if (parent) {
-                insertFiles_1.default(view, event, parent.pos, files, {
-                    uploadImage,
-                    onImageUploadStart,
-                    onImageUploadStop,
-                    onShowToast,
-                    dictionary: this.props.dictionary,
-                });
             }
             if (this.inputRef.current) {
                 this.inputRef.current.value = "";
